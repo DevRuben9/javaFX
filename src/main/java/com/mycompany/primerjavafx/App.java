@@ -34,17 +34,14 @@ public class App extends Application {
         Button btnB = new Button("B. Técnicos por contacto");
         Button btnC = new Button("C. Reporte de Revisiones");
 
-        // Estilo rápido para los botones
         btnA.setMaxWidth(Double.MAX_VALUE);
         btnB.setMaxWidth(Double.MAX_VALUE);
         btnC.setMaxWidth(Double.MAX_VALUE);
 
-        // Asignamos las funciones a los botones
         btnA.setOnAction(e -> mostrarVehiculosNuevos());
         btnB.setOnAction(e -> mostrarTecnicosDesc());
         btnC.setOnAction(e -> mostrarReporteRevisiones());
 
-        // Layout
         VBox root = new VBox(10, btnA, btnB, btnC, txtResultado);
         root.setStyle("-fx-padding: 20;");
 
@@ -54,16 +51,12 @@ public class App extends Application {
         stage.show();
     }
 
-    // --- MÉTODOS DE LÓGICA SQL ---
-
     public void mostrarVehiculosNuevos() {
         txtResultado.clear();
-        
-        // En MySQL, la consulta es idéntica
+       
         String sql = "SELECT * FROM vehiculo ORDER BY odometro ASC LIMIT 3";
         
         try {
-            // Cargar el driver de MySQL (Opcional en versiones nuevas, pero recomendado)
             Class.forName("com.mysql.cj.jdbc.Driver");
             
             try (Connection con = DriverManager.getConnection(URL, USER, PASS);
